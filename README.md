@@ -45,7 +45,7 @@
 
 ## 联系与协作
 
-欢迎通过 [Gitee](https://gitee.com/rediaz)、[GitHub](https://github.com/MannorRedaz) 或 [CSDN](https://blog.csdn.net/m0_63144319) 交流技术问题、开源协作与项目实践。
+欢迎通过 [邮箱](mailto:red@rediaz.online)、[Gitee](https://gitee.com/rediaz)、[GitHub](https://github.com/MannorRedaz) 或 [CSDN](https://blog.csdn.net/m0_63144319) 交流技术问题、开源协作与项目实践。
 
 ---
 
