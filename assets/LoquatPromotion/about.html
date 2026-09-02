@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="关于我们与留言联系——冕宁枇杷产地助农宣传站项目介绍、留言咨询表单与平台免责声明。">
+  <title>关于我们 | 冕宁枇杷·产地助农宣传站</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- ===== 顶部导航 ===== -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-leaf"></i></span>
+        <span>冕宁枇杷<small>产地助农宣传站</small></span>
+      </a>
+      <button class="mobile-toggle" aria-label="打开菜单"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-list">
+        <a href="index.html">首页</a>
+        <a href="origin.html">产地优势</a>
+        <a href="products.html">产品展示</a>
+        <a href="farmers.html">农户故事</a>
+        <a href="science.html">枇杷科普</a>
+        <a href="travel.html">采摘咨询</a>
+        <a href="about.html" class="active">关于我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 页面横幅 ===== -->
+  <div class="hero-banner" style="background-image:url('img/披肩同行-三下乡照片.jpg');">
+    <div class="banner-text">
+      <h1>关于我们</h1>
+      <p>一次以枇杷为名的助农实践</p>
+    </div>
+  </div>
+
+  <!-- ===== 项目介绍 ===== -->
+  <section class="section">
+    <div class="container article reveal">
+      <span class="badge">项目简介</span>
+      <h2 style="font-size:24px;margin:6px 0 14px;">学生实践 · 公益助农宣传站</h2>
+      <p>本网站是由学生团队发起的<b>公益性助农宣传项目</b>，旨在助力冕宁枇杷产业宣传，属于<b>大学生创新创业实践 / 课程网页 / 竞赛</b>成果。</p>
+      <p>冕宁里庄、锦屏镇高山早春枇杷品质出众，却因地处山区、对外宣传渠道有限，长期“好货名气小”。我们不做商业网站、不参与交易，只做一个<b>真实、透明的产地信息展示窗口</b>：讲清楚产地优势、展示果园与农户故事、提供采摘与采购咨询对接。</p>
+      <p><strong style="color:#5DAE74;">本网站为非商业盈利性质的公益项目，通过信息桥梁间接带动鲜果销售与采摘旅游，助力乡村振兴。</strong></p>
+      <div class="tip-box">
+        <strong>定位说明：</strong>本站为信息展示型网站，不做电商下单、支付与发货，规避交易与售后风险，突出公益宣传与社会实践价值。
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 留言表单 ===== -->
+  <section class="section" style="background:#eef7ee;">
+    <div class="container">
+      <div class="section-title">
+        <h2>留言咨询</h2>
+        <p>采购 · 采摘 · 咨询，留下您的需求，我们会及时对接</p>
+      </div>
+      <div class="form-wrap reveal">
+        <form onsubmit="return submitEnquiry(this);" method="post" action="#">
+          <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+          </div>
+          <div class="form-group">
+            <label for="type">需求类型</label>
+            <select id="type" name="type">
+              <option value="purchase">采购 / 批发</option>
+              <option value="travel">采摘体验</option>
+              <option value="consult">一般咨询</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact">联系方式</label>
+            <input type="text" id="contact" name="contact" placeholder="手机号 / 微信号 / 邮箱" required>
+          </div>
+          <div class="form-group">
+            <label for="content">留言内容</label>
+            <textarea id="content" name="content" placeholder="请简单描述您的需求或问题…"></textarea>
+          </div>
+          <button type="submit" class="btn" style="width:100%;border:none;">提交咨询</button>
+
+          <!-- 后端预留说明 -->
+          <div class="placeholder-backend">
+            <i class="fa-solid fa-server"></i> 留言提交服务暂未接入（后端 PHP + MySQL 预留占位），本阶段仅作静态表单展示。
+          </div>
+          <p class="form-note"><i class="fa-solid fa-circle-info"></i> 提交后，我们会将您的需求对接给产地合作社，由农户与您直接沟通。</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 联系方式 ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>联系方式</h2>
+        <p>产地咨询与对接</p>
+      </div>
+      <div class="grid-3">
+        <div class="card reveal" style="text-align:center;">
+          <i class="fa-solid fa-envelope" style="font-size:34px;color:var(--brand-green-deep);"></i>
+          <h3 style="margin-top:10px;">邮箱</h3>
+          <p>contact@example.com</p>
+        </div>
+        <div class="card reveal" style="text-align:center;">
+          <i class="fa-solid fa-phone" style="font-size:34px;color:var(--brand-green-deep);"></i>
+          <h3 style="margin-top:10px;">咨询电话</h3>
+          <p>028-XXXX-XXXX</p>
+        </div>
+        <div class="card reveal" style="text-align:center;">
+          <i class="fa-solid fa-location-dot" style="font-size:34px;color:var(--brand-green-deep);"></i>
+          <h3 style="margin-top:10px;">产地</h3>
+          <p>四川省凉山州冕宁县里庄镇 / 锦屏镇</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 免责声明 ===== -->
+  <section class="section" style="background:#eef7ee;">
+    <div class="container article">
+      <div class="section-title">
+        <h2>免责声明</h2>
+      </div>
+      <div class="card reveal">
+        <p style="color:var(--text-gray);">
+          ① 本平台为公益信息展示网站，仅提供产地、产品与农户等信息的展示与咨询对接，<b>不参与任何交易</b>；<br><br>
+          ② 本站不提供在线下单、支付、收款、发货及售后服务，交易双方（农户与采购方 / 游客）请<b>自行沟通与交易</b>；<br><br>
+          ③ 交易过程中产生的价格、质量、售后等事项，由交易双方自行协商解决，<b>风险由双方自行承担</b>，本平台不承担相关责任。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">冕宁枇杷·产地助农宣传站</div>
+          <p>聚焦雅砻江河谷高山早春枇杷，展示产地、农户与采摘信息，助力乡村振兴。</p>
+        </div>
+        <div>
+          <div class="footer-title">快速导航</div>
+          <ul>
+            <li><a href="origin.html">产地优势</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="farmers.html">农户故事</a></li>
+            <li><a href="travel.html">采摘咨询</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">联系我们</div>
+          <p><i class="fa-solid fa-envelope"></i> 邮箱：contact@example.com</p>
+          <p><i class="fa-solid fa-phone"></i> 咨询电话：028-XXXX-XXXX</p>
+          <p><i class="fa-solid fa-location-dot"></i> 产地：四川省凉山州冕宁县</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 冕宁枇杷·产地助农宣传站 | 学生实践公益项目 · 本平台仅作信息展示，不参与交易</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
