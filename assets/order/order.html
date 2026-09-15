@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>程序员接单 | 定制开发 · 后端 · 全栈 · 运维</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0c1014;
+            --text: #e2e8f0;
+            --green: #4ade80;
+            --gray: #94a3b8;
+            --accent-dark: #161e27;
+            --border: #232f3b;
+        }
+
+        body {
+            font-family: "JetBrains Mono", Consolas, Menlo, monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        .prompt {
+            color: var(--green);
+        }
+
+        header {
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .sub-desc {
+            color: var(--gray);
+            font-size: 15px;
+            max-width:720px;
+        }
+
+        .cmd-block {
+            background: var(--accent-dark);
+            border:1px solid var(--border);
+            padding:18px 22px;
+            margin:24px 0;
+            border-radius:6px;
+        }
+
+        section {
+            margin-bottom: 64px;
+        }
+
+        section h2 {
+            font-size:20px;
+            margin-bottom:20px;
+            display:flex;
+            gap:8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap:20px;
+        }
+
+        .card {
+            background: var(--accent-dark);
+            border:1px solid var(--border);
+            padding:20px;
+            border-radius:6px;
+        }
+
+        .card h3 {
+            color:var(--green);
+            margin-bottom:8px;
+            font-size:16px;
+        }
+        .card p {
+            color:var(--gray);
+            font-size:14px;
+        }
+
+        .tag-list {
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+            margin-top:12px;
+        }
+        .tag {
+            font-size:12px;
+            padding:3px 9px;
+            border:1px solid var(--border);
+            border-radius:4px;
+            color:var(--gray);
+        }
+
+        .timeline-item {
+            margin-bottom:22px;
+            padding-left:20px;
+            border-left:1px solid var(--green);
+        }
+        .timeline-item h4 {
+            color:var(--green);
+            font-size:15px;
+        }
+        .timeline-item p {
+            color:var(--gray);
+            font-size:14px;
+        }
+
+        ul.dot-list {
+            padding-left:20px;
+            color:var(--gray);
+        }
+        ul.dot-list li {
+            margin:8px 0;
+        }
+
+        footer {
+            margin-top:80px;
+            padding-top:30px;
+            border-top:1px solid var(--border);
+        }
+        footer a {
+            color:var(--green);
+            text-decoration:none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media(max-width:640px){
+            body{
+                padding:20px 16px;
+            }
+            header h1{
+                font-size:22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="prompt">$ ./freelance --profile</div>
+        <h1>程序员外包接单服务</h1>
+        <p class="sub-desc">后端开发 · 全栈定制 · 物联网系统 · 运维部署 · 毕业设计项目，把需求变成稳定可运行的系统。</p>
+    </header>
+
+    <section>
+        <h2><span class="prompt">$</span> 可承接项目范围</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>后端业务系统开发</h3>
+                <p>Java SpringBoot / SSM 业务后台、管理系统、库存采购、医疗、教育类业务开发，接口开发与数据库设计。</p>
+                <div class="tag-list">
+                    <span class="tag">Java</span>
+                    <span class="tag">SpringBoot</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">REST API</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>物联网 & MQTT项目</h3>
+                <p>物联网数据接收、EMQX部署、设备接入、数据可视化，智慧农业、监测类系统开发调试。</p>
+                <div class="tag-list">
+                    <span class="tag">MQTT</span>
+                    <span class="tag">EMQX</span>
+                    <span class="tag">Vue3</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>全栈Web项目</h3>
+                <p>前后端分离网站、商城、点餐系统；Vue3前端页面、交互、图表可视化开发。</p>
+                <div class="tag-list">
+                    <span class="tag">Vue3</span>
+                    <span class="tag">Vite</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>运维与工具脚本</h3>
+                <p>Windows工具、Python自动化脚本、Docker部署、服务器配置、故障排查、离线镜像迁移。</p>
+                <div class="tag-list">
+                    <span class="tag">Docker</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Linux</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>毕业设计课程设计</h3>
+                <p>本科专科计算机毕设，需求分析、代码、数据库、文档，讲解运行。</p>
+                <div class="tag-list">
+                    <span class="tag">Web系统</span>
+                    <span class="tag">报告文档</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Bug修复 & 二次开发</h3>
+                <p>旧项目改造，问题排查，功能迭代，接口调试，性能简单优化。</p>
+                <div class="tag-list">
+                    <span class="tag">排障</span>
+                    <span class="tag">二次开发</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2><span class="prompt">$</span> 技术能力栈</h2>
+        <div class="cmd-block">
+            <div class="prompt"># Backend</div>
+            <div>Java / SpringBoot / SSM / REST / MySQL</div>
+            <br>
+            <div class="prompt"># Frontend</div>
+            <div>Vue3 / JavaScript / Vite / Canvas</div>
+            <br>
+            <div class="prompt"># DevOps & IoT</div>
+            <div>Docker / Linux / MQTT EMQX / Nacos / Kafka / Python</div>
+        </div>
+    </section>
+
+    <section>
+        <h2><span class="prompt">$</span> 项目合作流程</h2>
+        <div class="timeline-item">
+            <h4>01｜需求沟通</h4>
+            <p>沟通功能、交付物、截止时间；评估难度，给出方案与报价，确认需求文档。</p>
+        </div>
+        <div class="timeline-item">
+            <h4>02｜确认与启动</h4>
+            <p>确认报价与周期，明确交付标准，开始开发。中途同步进度。</p>
+        </div>
+        <div class="timeline-item">
+            <h4>03｜开发与迭代</h4>
+            <p>完成核心功能，提供演示，接收修改意见，迭代调整。</p>
+        </div>
+        <div class="timeline-item">
+            <h4>04｜交付与部署指导</h4>
+            <p>交付完整源码、数据库脚本；提供部署文档，简单答疑。</p>
+        </div>
+    </section>
+
+    <section>
+        <h2><span class="prompt">$</span> 报价模式</h2>
+        <div class="cmd-block">
+            <ul class="dot-list">
+                <li>固定总价：需求明确的完整项目，一次性报价，适合毕设、完整业务系统。</li>
+                <li>按工时：需求模糊、迭代修改、bug修复，按实际开发工时计费。</li>
+                <li>不接：违规爬虫、破解、作弊类需求。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2><span class="prompt">$</span> 过往参考项目</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>盐碱地智慧农业管理系统</h3>
+                <p>物联网监测平台，Java+Vue3前后端分离，设备数据采集、可视化管理。</p>
+            </div>
+            <div class="card">
+                <h3>SSM点餐外卖系统</h3>
+                <p>完整电商点餐业务，订单、权限、后台管理。</p>
+            </div>
+            <div class="card">
+                <h3>C盘清理工具｜微信聊天导出工具</h3>
+                <p>桌面工具类项目，文件扫描，数据导出归档。</p>
+            </div>
+            <div class="card">
+                <h3>耗材采购库存管理系统</h3>
+                <p>企业采购、入库出库、库存统计业务后台。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="prompt">$ ./contact --hire</div>
+        <h3>联系接单</h3>
+        <p style="margin-top:10px;color:var(--gray)">发送你的需求描述、功能清单、截止时间，我会尽快评估回复。</p>
+        <div style="margin-top:14px;">
+            <p>📧 Email：<a href="mailto:red@rediaz.online">red@rediaz.online</a></p>
+        </div>
+        <p style="margin-top:24px;font-size:13px;color:#64748b">LET'S BUILD SOMETHING WORKABLE.</p>
+    </footer>
+</body>
+</html>
