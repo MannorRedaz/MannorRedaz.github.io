@@ -383,10 +383,8 @@
 </footer>
 
 <script>
-    // 静态网页中的配置对访客可见。这里只能使用权限受限、可轮换的表单提交令牌。
-    // const baseUrl = "https://api.rediaz.online";
-    const baseUrl = "http://47.108.232.46:8080";
-    const apiSecret = "fYJ2JeRy6uIDRbHj";
+    // 表单通过 HTTPS Worker 转发，接口密钥仅保存在 Worker Secret 中。
+    const baseUrl = "https://form-proxy.yangziqiang162.workers.dev";
     const projectId = "freelance-hire";
     const requestTimeout = 15000;
 
@@ -408,11 +406,6 @@
             return;
         }
 
-        if (apiSecret === '替换为接口密钥') {
-            showMessage('表单尚未完成接口配置，请通过页面底部邮箱联系。', 'error');
-            return;
-        }
-
         submitBtn.disabled = true;
         submitBtn.textContent = '提交中...';
 
@@ -426,7 +419,6 @@
         const payload = {
             project: projectId,
             title: "新接单咨询：" + fields.称呼,
-            secret: apiSecret,
             fields: fields
         };
         const controller = new AbortController();
