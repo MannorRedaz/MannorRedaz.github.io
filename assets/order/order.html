@@ -154,6 +154,12 @@
             font-family: inherit;
             font-size:14px;
         }
+        .form-row input:focus,
+        .form-row textarea:focus {
+            outline:2px solid var(--green);
+            outline-offset:2px;
+            border-color:transparent;
+        }
         .form-row textarea {
             min-height:140px;
             resize: vertical;
@@ -179,6 +185,11 @@
         .msg-error {
             color:var(--danger);
             margin-top:12px;
+        }
+        .form-tip {
+            color:var(--gray);
+            font-size:12px;
+            margin-top:10px;
         }
 
         footer {
@@ -343,19 +354,20 @@
     <div class="form-wrap">
         <form id="hireForm">
             <div class="form-row">
-                <label>您的称呼</label>
-                <input type="text" name="name" required placeholder="例：王先生">
+                <label for="name">您的称呼</label>
+                <input id="name" type="text" name="name" required maxlength="100" autocomplete="name" placeholder="例：王先生">
             </div>
             <div class="form-row">
-                <label>联系方式</label>
-                <input type="text" name="contact" required placeholder="微信 / QQ / 邮箱">
+                <label for="contact">联系方式</label>
+                <input id="contact" type="text" name="contact" required maxlength="200" autocomplete="email" placeholder="微信 / QQ / 邮箱">
             </div>
             <div class="form-row">
-                <label>项目需求描述</label>
-                <textarea name="requirement" required placeholder="描述项目功能、时间要求、预算等信息"></textarea>
+                <label for="requirement">项目需求描述</label>
+                <textarea id="requirement" name="requirement" required maxlength="2000" placeholder="描述项目功能、时间要求、预算等信息"></textarea>
             </div>
             <button type="submit" class="btn-submit" id="submitBtn">提交需求</button>
-            <div id="msgBox"></div>
+            <div id="msgBox" role="status" aria-live="polite"></div>
+            <p class="form-tip">请勿提交密码、身份证号、银行卡号等敏感信息。</p>
         </form>
     </div>
 </section>
@@ -371,35 +383,53 @@
 </footer>
 
 <script>
-    // ========== API配置，需要自行修改 ==========
-    const baseUrl = "http://api.rediaz.online:8080";
+    // 静态网页中的配置对访客可见。这里只能使用权限受限、可轮换的表单提交令牌。
+    const baseUrl = "https://api.rediaz.online";
     const apiSecret = "fYJ2JeRy6uIDRbHj";
     const projectId = "freelance-hire";
-    // =========================================
+    const requestTimeout = 15000;
 
     const formEl = document.getElementById('hireForm');
     const submitBtn = document.getElementById('submitBtn');
     const msgBox = document.getElementById('msgBox');
 
+    function showMessage(message, type) {
+        msgBox.textContent = message;
+        msgBox.className = type === 'success' ? 'msg-success' : 'msg-error';
+    }
+
     formEl.addEventListener('submit', async function(e){
         e.preventDefault();
-        msgBox.innerHTML = '';
+        msgBox.textContent = '';
+        msgBox.className = '';
+
+        if (!formEl.reportValidity()) {
+            return;
+        }
+
+        if (apiSecret === '替换为接口密钥') {
+            showMessage('表单尚未完成接口配置，请通过页面底部邮箱联系。', 'error');
+            return;
+        }
+
         submitBtn.disabled = true;
+        submitBtn.textContent = '提交中...';
 
         const fd = new FormData(formEl);
         const fields = {
-            称呼: fd.get('name'),
-            联系方式: fd.get('contact'),
-            需求描述: fd.get('requirement'),
+            称呼: fd.get('name').trim(),
+            联系方式: fd.get('contact').trim(),
+            需求描述: fd.get('requirement').trim(),
             来源页面: "程序员接单页面"
         };
-
         const payload = {
             project: projectId,
-            title: "新接单咨询：" + fd.get('name'),
+            title: "新接单咨询：" + fields.称呼,
             secret: apiSecret,
             fields: fields
         };
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), requestTimeout);
 
         try {
             const resp = await fetch(`${baseUrl}/api/v1/submissions`, {
@@ -407,29 +437,34 @@
                 headers: {
                     "Content-Type":"application/json; charset=UTF-8"
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(payload),
+                signal: controller.signal
             });
-
-            const result = await resp.json();
+            const contentType = resp.headers.get('content-type') || '';
+            const result = contentType.includes('application/json') ? await resp.json() : {};
 
             if (!resp.ok || result.code !== 200) {
                 let tip = result.msg || "提交失败，请稍后重试";
-                // 根据HTTP状态补充提示（参考skill文档错误处理）
-                if(resp.status === 400) tip = "参数错误：" + tip;
-                if(resp.status === 403) tip = "接口密钥无效，请检查配置";
+                if(resp.status === 400) tip = "提交内容有误：" + tip;
+                if(resp.status === 403) tip = "提交服务验证失败，请通过页面底部邮箱联系";
                 if(resp.status === 413) tip = "提交内容过大，请精简需求描述";
                 if(resp.status === 429) tip = "请求过于频繁，请稍后再提交";
-                msgBox.innerHTML = `<div class="msg-error">${tip}</div>`;
+                showMessage(tip, 'error');
                 return;
             }
 
-            msgBox.innerHTML = `<div class="msg-success">✅ 提交成功！我会尽快联系你。</div>`;
+            showMessage('提交成功！我会尽快联系你。', 'success');
             formEl.reset();
         } catch(err){
-            msgBox.innerHTML = `<div class="msg-error">网络异常，请检查网络或者稍后重试。</div>`;
-            console.error(err);
+            const message = err.name === 'AbortError'
+                ? '提交超时，请稍后重试。'
+                : '网络异常，请稍后重试，或通过页面底部邮箱联系。';
+            showMessage(message, 'error');
+            console.error('表单提交失败', err);
         } finally {
+            clearTimeout(timeoutId);
             submitBtn.disabled = false;
+            submitBtn.textContent = '提交需求';
         }
     });
 </script>
